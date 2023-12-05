@@ -17,3 +17,13 @@
     font-weight: 400;
     font-size: 32px;
 }
+
+.addUsuario{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.botaoUsuario{
+    margin-top: 20px;
+    margin-right: 20px;
+}

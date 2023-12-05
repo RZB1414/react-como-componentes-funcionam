@@ -4,7 +4,7 @@ import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './formulario.css'
 
-const Formulario = ({aoCadastrar, times, cadastrarTime}) => {
+const Formulario = ({ aoCadastrar, times, cadastrarTime }) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
@@ -15,7 +15,7 @@ const Formulario = ({aoCadastrar, times, cadastrarTime}) => {
 
     const aoSubmeter = (evento) => {
         evento.preventDefault()
-        console.log('form enviado', nome, cargo, imagem, time )
+        console.log('form enviado', nome, cargo, imagem, time)
         aoCadastrar({
             nome,
             cargo,
@@ -25,58 +25,58 @@ const Formulario = ({aoCadastrar, times, cadastrarTime}) => {
     }
 
     return (
-        <section className="formulario-container">
-            <form className="formulario" onSubmit={aoSubmeter}>
-                <h2>Preencha os dados para criar o card do colaborador.</h2>
-                <CampoTexto
-                    obrigatorio={true}
-                    label='Nome'
-                    placeholder='Digite seu nome '
-                    valor={nome}
-                    aoAlterado={valor => setNome(valor)}/>
-                <CampoTexto
-                    obrigatorio={true}
-                    label='Cargo' 
-                    placeholder='Digite seu cargo '
-                    valor={cargo}
-                    aoAlterado={valor => setCargo(valor)}/>
-                <CampoTexto 
-                    label='Imagem' 
-                    placeholder='Informe o endereço da imagem '
-                    aoAlterado={valor => setImagem(valor)}/>
-                <ListaSuspensa 
-                    obrigatorio={true}
-                    label='Times'
-                    items={times} 
-                    valor={time}
-                    aoAlterado={valor => setTime(valor)}/>
-                <Botao texto='Criar card' />
-            </form>
+            <section className="formulario-container">
+                <form className="formulario" onSubmit={aoSubmeter}>
+                    <h2>Preencha os dados para criar o card do colaborador.</h2>
+                    <CampoTexto
+                        obrigatorio={true}
+                        label='Nome'
+                        placeholder='Digite seu nome '
+                        valor={nome}
+                        aoAlterado={valor => setNome(valor)} />
+                    <CampoTexto
+                        obrigatorio={true}
+                        label='Cargo'
+                        placeholder='Digite seu cargo '
+                        valor={cargo}
+                        aoAlterado={valor => setCargo(valor)} />
+                    <CampoTexto
+                        label='Imagem'
+                        placeholder='Informe o endereço da imagem '
+                        aoAlterado={valor => setImagem(valor)} />
+                    <ListaSuspensa
+                        obrigatorio={true}
+                        label='Times'
+                        items={times}
+                        valor={time}
+                        aoAlterado={valor => setTime(valor)} />
+                    <Botao texto='Criar card' />
+                </form>
 
-            <form className="formulario" onSubmit={(evento) =>{
-                evento.preventDefault()
-                cadastrarTime({nome: nomeTime, cor: corTime})
-            }}>
-                <h2>Preencha os dados para criar um novo time.</h2>
-                <CampoTexto
-                    obrigatorio
-                    label='Nome'
-                    placeholder='Digite o nome do time '
-                    valor={nomeTime}
-                    aoAlterado={valor => setNomeTime(valor)}
-                />
-                <CampoTexto
-                    obrigatorio
-                    type='color'
-                    label='Cor' 
-                    placeholder='Digite a cor do time '
-                    valor={corTime}
-                    aoAlterado={valor => setCorTime(valor)}
-                />
-                
-                <Botao texto='Criar um novo time' />
-            </form>
-        </section>
+                <form className="formulario" onSubmit={(evento) => {
+                    evento.preventDefault()
+                    cadastrarTime({ nome: nomeTime, cor: corTime })
+                }}>
+                    <h2>Preencha os dados para criar um novo time.</h2>
+                    <CampoTexto
+                        obrigatorio
+                        label='Nome'
+                        placeholder='Digite o nome do time '
+                        valor={nomeTime}
+                        aoAlterado={valor => setNomeTime(valor)}
+                    />
+                    <CampoTexto
+                        obrigatorio
+                        type='color'
+                        label='Cor'
+                        placeholder='Digite a cor do time '
+                        valor={corTime}
+                        aoAlterado={valor => setCorTime(valor)}
+                    />
+
+                    <Botao texto='Criar um novo time' />
+                </form>
+            </section>
     )
 }
 

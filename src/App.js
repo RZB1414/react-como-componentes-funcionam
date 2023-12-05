@@ -4,6 +4,7 @@ import Formulario from "./componentes/Formulario";
 import Rodape from "./componentes/Rodape";
 import Time from "./componentes/Time";
 import { v4 as uuidv4 } from 'uuid';
+import { TiUserAdd } from "react-icons/ti";
 
 function App() {
 
@@ -246,8 +247,8 @@ function App() {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id))
   }
 
-  function mudarCorDoTime(cor, id){
-    setTimes(times.map(time =>{
+  function mudarCorDoTime(cor, id) {
+    setTimes(times.map(time => {
       if (time.id === id) {
         time.cor = cor
       }
@@ -255,31 +256,43 @@ function App() {
     }))
   }
 
-  function cadastrarTime(novoTime){
-    setTimes([ ...times, { ...novoTime, id: uuidv4()} ])
+  function cadastrarTime(novoTime) {
+    setTimes([...times, { ...novoTime, id: uuidv4() }])
   }
 
-  function resolverFavorito(id){
+  function resolverFavorito(id) {
     setColaboradores(colaboradores.map(colaborador => {
-      if(colaborador.id === id) {
+      if (colaborador.id === id) {
         colaborador.favorito = !colaborador.favorito
       }
       return colaborador
     }))
   }
 
+  const [mostrarFormulario, setMostrarFormulario] = useState(false)
+
+  function mostrarEsconder() {
+    setMostrarFormulario(!mostrarFormulario)
+    console.log(mostrarFormulario);
+}
+
   return (
     <div>
       <Banner />
-      <Formulario
+      {mostrarFormulario ? <Formulario
         cadastrarTime={cadastrarTime}
         times={times.map(time => time.nome)}
         aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])}
-      />
+      /> : null}
+
+      <div className='addUsuario'>
+        <TiUserAdd className='botaoUsuario' size={40} onClick={mostrarEsconder} />
+      </div>
+
       <section className="times">
         <h1>Minha organização</h1>
         {times.map((time, indice) =>
-          <Time 
+          <Time
             mudarCor={mudarCorDoTime}
             key={indice}
             time={time}
